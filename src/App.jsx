@@ -5,7 +5,7 @@ import {
   Thermometer, 
   Snowflake, 
   MessageSquare, 
-  MapPin,  
+  MapPin, 
   CheckCircle, 
   CreditCard,
   Building,
@@ -15,47 +15,42 @@ import {
   Activity,
   User,
   DollarSign,
-  Phone
+  Phone,
+  Camera,
+  Flame,
+  Droplets
 } from 'lucide-react';
 
 /**
  * HOMEREADY - NYC AI-NATIVE HOME SERVICES
- * LAUNCH VERSION 1.1.1 - Updated Official Contact Info
- * Strategy: Dryer Vent Wedge -> Organic Growth -> Upsell
+ * v1.1.6 - Updated Image Filenames for Proof of Work
  */
 
 const SERVICE_CATALOG = {
-  DRYER_VENT: {
-    id: 'dryer_vent',
-    name: 'Dryer Vent Cleaning & Safety',
-    price: 189,
-    buildingPrice: 139,
-    desc: 'Full cleaning, airflow test, fire-risk checklist. NYC code compliant.',
+  EXHAUST_CLEANING: {
+    id: 'exhaust_cleaning',
+    name: 'Exhaust Vent & Air Quality',
+    price: 149,
+    buildingPrice: 119,
+    desc: 'Deep clean of bathroom/kitchen exhaust vents. Removes years of dust, improves suction and air quality.',
     icon: <Wind className="w-6 h-6" />
   },
-  THERMOSTAT: {
-    id: 'thermostat',
-    name: 'Smart Thermostat Install',
-    price: 299,
-    buildingPrice: 279,
-    desc: 'Nest/Ecobee installation. C-wire verification included.',
-    icon: <Thermometer className="w-6 h-6" />
+  DRYER_VENT: {
+    id: 'dryer_vent',
+    name: 'Dryer Vent Safety Audit',
+    price: 189,
+    buildingPrice: 139,
+    desc: 'Full lint removal and airflow test for in-unit dryers. Critical fire prevention.',
+    icon: <Flame className="w-6 h-6" />
   },
-  WINTERIZE: {
-    id: 'winterize',
-    name: 'Winter Weatherization',
-    price: 399,
-    buildingPrice: 369,
-    desc: 'Window film, draft sealing, radiator reflectors.',
-    icon: <Snowflake className="w-6 h-6" />
+  SMART_HOME: {
+    id: 'smart_home',
+    name: 'Smart Home Setup',
+    price: 249,
+    buildingPrice: 219,
+    desc: 'Thermostats, lighting, and leak sensors. Tech-forward apartment upgrades.',
+    icon: <Thermometer className="w-6 h-6" />
   }
-};
-
-const SUBCONTRACTOR_PAYOUTS = {
-  DRYER_VENT: 75,
-  THERMOSTAT: 120,
-  WINTERIZE: 140,
-  EMERGENCY_SURCHARGE: 15,
 };
 
 const Header = ({ setView, view }) => (
@@ -104,14 +99,14 @@ const Hero = ({ setView }) => (
           System Online • NYC
         </div>
         <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
-          Home maintenance, <br/>
+          Apartment wellness, <br/>
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">
             orchestrated by AI.
           </span>
         </h1>
         <p className="text-lg text-slate-400 max-w-lg">
-          Flat-rate dryer vent cleaning and safety audits. 
-          The smarter way to protect your Manhattan home.
+          Professional exhaust cleaning, air quality audits, and smart upgrades. 
+          Standardizing home maintenance for every NYC resident.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
           <button 
@@ -133,12 +128,101 @@ const Hero = ({ setView }) => (
   </div>
 );
 
+const ResultsGallery = () => {
+  // Using your specific filenames
+  const beforeImg = "/images/IMG_4477.jpg"; 
+  const afterImg = "/images/IMG_4478.jpg";
+
+  return (
+    <div className="py-20 bg-white">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div className="max-w-xl">
+            <h2 className="text-3xl font-bold text-slate-900 flex items-center">
+              <Camera className="w-7 h-7 mr-3 text-blue-600" />
+              Proof of Work
+            </h2>
+            <p className="text-slate-600 mt-2">
+              Bathroom and kitchen exhaust vents are often neglected for decades. 
+              We clear the buildup to restore proper ventilation and indoor air quality.
+            </p>
+          </div>
+          <div className="mt-4 md:mt-0 flex items-center space-x-2 text-blue-600 bg-blue-50 px-3 py-1.5 rounded-lg border border-blue-100 text-xs font-bold uppercase tracking-wider">
+            <Wind className="w-4 h-4" />
+            Air Quality Restored
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Before Card */}
+          <div className="group overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 relative flex flex-col shadow-sm">
+            <div className="aspect-[4/3] w-full relative overflow-hidden bg-slate-200">
+              <img 
+                src={beforeImg} 
+                alt="Exhaust vent before cleaning"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              <div className="hidden absolute inset-0 flex-col items-center justify-center p-8 text-center bg-slate-100">
+                 <div className="text-5xl mb-4">🌪️</div>
+                 <div className="text-slate-900 font-bold text-lg text-center px-4">Dust Buildup Found</div>
+                 <p className="text-sm text-slate-500 mt-1">Standard Apartment Exhaust Vent</p>
+              </div>
+            </div>
+            <div className="bg-slate-900 p-4 flex justify-between items-center text-white">
+              <span className="text-xs font-bold uppercase tracking-tighter opacity-70">Before Cleaning</span>
+              <span className="text-xs font-medium italic">Poor suction • Allergen buildup</span>
+            </div>
+          </div>
+
+          {/* After Card */}
+          <div className="group overflow-hidden rounded-2xl border border-emerald-200 bg-emerald-50 relative flex flex-col shadow-sm">
+            <div className="aspect-[4/3] w-full relative overflow-hidden bg-emerald-100">
+              <img 
+                src={afterImg} 
+                alt="Exhaust vent after cleaning"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              <div className="hidden absolute inset-0 flex-col items-center justify-center p-8 text-center bg-emerald-50">
+                 <CheckCircle className="w-14 h-14 text-emerald-600 mx-auto mb-3" />
+                 <div className="text-slate-900 font-bold text-lg uppercase tracking-tight">Full Restoration</div>
+                 <p className="text-sm text-slate-600 mt-1">Sanitized & High-Volume Airflow</p>
+              </div>
+            </div>
+            <div className="bg-emerald-600 p-4 flex justify-between items-center text-white">
+              <span className="text-xs font-bold uppercase tracking-tighter opacity-70">After HomeReady</span>
+              <span className="text-xs font-medium">Clear Air • High Efficiency</span>
+            </div>
+          </div>
+        </div>
+        
+        <div className="mt-12 p-8 bg-slate-50 rounded-2xl border border-slate-100 flex items-center space-x-6">
+          <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shrink-0">
+            <Star className="w-8 h-8 fill-current" />
+          </div>
+          <div>
+            <p className="text-slate-700 text-lg italic">"I never realized how much dust our bathroom vent was blowing back into the apartment. HomeReady cleared it out in 20 minutes and showed me the before/after photos. Incredible service."</p>
+            <p className="text-slate-900 font-bold mt-2">— Sarah L., Upper West Side</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ServiceGrid = ({ setView }) => (
-  <div className="py-20 bg-slate-50">
+  <div className="py-20 bg-slate-50 border-y border-slate-200">
     <div className="max-w-6xl mx-auto px-4">
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-slate-900">Expert Services</h2>
-        <p className="text-slate-600 mt-2">Certified pros. Fixed pricing. Guaranteed outcomes.</p>
+        <h2 className="text-3xl font-bold text-slate-900">Standardized Pricing</h2>
+        <p className="text-slate-600 mt-2">Flat rates for every unit. No hourly billing. No surprises.</p>
       </div>
       
       <div className="grid md:grid-cols-3 gap-8">
@@ -151,7 +235,7 @@ const ServiceGrid = ({ setView }) => (
             <p className="text-slate-500 text-sm mb-4 min-h-[40px]">{service.desc}</p>
             <div className="flex items-baseline mb-6">
               <span className="text-2xl font-bold text-slate-900">${service.price}</span>
-              <span className="text-slate-400 text-sm ml-1">/ visit</span>
+              <span className="text-slate-400 text-sm ml-1">/ unit</span>
             </div>
             <button 
               onClick={() => setView('agent')}
@@ -168,11 +252,10 @@ const ServiceGrid = ({ setView }) => (
 
 const AgentInterface = ({ setView }) => {
   const [messages, setMessages] = useState([
-    { id: 1, type: 'agent', text: "Hi, I'm the HomeReady Assistant. I can help you schedule a dryer vent cleaning or other home safety services. What's your address?" }
+    { id: 1, type: 'agent', text: "Hi, I'm the HomeReady Assistant. We specialize in ventilation cleaning and apartment wellness. What's your Manhattan address?" }
   ]);
   const [input, setInput] = useState('');
   const [state, setState] = useState('ADDRESS');
-  const [bookingData, setBookingData] = useState({});
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef(null);
 
@@ -190,12 +273,10 @@ const AgentInterface = ({ setView }) => {
     setTimeout(() => {
       setIsTyping(false);
       if (state === 'ADDRESS') {
-        const isBeachhead = userText.includes('80th') || userText.includes('345');
-        setBookingData({ address: userText, isBeachhead });
-        setMessages(prev => [...prev, { id: Date.now(), type: 'agent', text: `Got it. We service ${userText}. Which service do you need? (Dryer Vent, Thermostat, or Winterization)` }]);
+        setMessages(prev => [...prev, { id: Date.now(), type: 'agent', text: `Got it. We service ${userText}. Are you interested in Exhaust Vent cleaning or a Dryer Vent safety audit?` }]);
         setState('SERVICE');
       } else if (state === 'SERVICE') {
-        setMessages(prev => [...prev, { id: Date.now(), type: 'agent', text: "Checking our schedule for a licensed pro in your area... Shall I generate a secure booking link?" }]);
+        setMessages(prev => [...prev, { id: Date.now(), type: 'agent', text: "Excellent. I'm checking for a certified pro in your building's zone... Should I generate a secure booking link?" }]);
         setState('CONFIRM');
       }
     }, 1000);
@@ -220,7 +301,7 @@ const AgentInterface = ({ setView }) => {
                 </div>
               </div>
             ))}
-            {isTyping && <div className="text-xs text-slate-400 italic">Thinking...</div>}
+            {isTyping && <div className="text-xs text-slate-400 italic px-2">Thinking...</div>}
           </div>
           <div className="p-4 border-t">
             <input 
@@ -244,20 +325,20 @@ const OperatorDashboard = () => (
     <p className="text-slate-500">Real-time building penetration and agent metrics.</p>
     <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
       <div className="bg-white p-6 rounded-xl shadow-sm border">
-        <div className="text-xs font-bold text-slate-400 uppercase">Active Jobs</div>
-        <div className="text-3xl font-bold">14</div>
+        <div className="text-xs font-bold text-slate-400 uppercase">Total Jobs</div>
+        <div className="text-3xl font-bold">1</div>
       </div>
       <div className="bg-white p-6 rounded-xl shadow-sm border">
-        <div className="text-xs font-bold text-slate-400 uppercase">Rev/Unit</div>
-        <div className="text-3xl font-bold">$215</div>
+        <div className="text-xs font-bold text-slate-400 uppercase">Mass Market Target</div>
+        <div className="text-sm font-bold">EXHAUST VENTS</div>
       </div>
       <div className="bg-white p-6 rounded-xl shadow-sm border">
-        <div className="text-xs font-bold text-slate-400 uppercase">Penetration</div>
-        <div className="text-3xl font-bold">12%</div>
+        <div className="text-xs font-bold text-slate-400 uppercase">Zone Status</div>
+        <div className="text-sm font-bold text-emerald-500 uppercase tracking-tighter">Active</div>
       </div>
       <div className="bg-white p-6 rounded-xl shadow-sm border">
-        <div className="text-xs font-bold text-slate-400 uppercase">Health</div>
-        <div className="text-3xl font-bold text-emerald-500">98%</div>
+        <div className="text-xs font-bold text-slate-400 uppercase">Review Status</div>
+        <div className="text-3xl font-bold text-emerald-500">PENDING</div>
       </div>
     </div>
     <button onClick={() => window.location.reload()} className="mt-8 text-blue-600 text-sm font-bold">Refresh Live Feed</button>
@@ -270,9 +351,6 @@ const SubcontractorPortal = () => (
       <User className="w-12 h-12 text-blue-600 mx-auto mb-4" />
       <h1 className="text-2xl font-bold">Pro Portal</h1>
       <p className="text-slate-500 mb-8">Login to view dispatched jobs and flat-rate payouts.</p>
-      <div className="p-4 bg-slate-50 rounded-xl border mb-6 text-sm text-slate-600 italic">
-        "I'm ready to accept a dryer vent job at 345 E 80th St."
-      </div>
       <button className="w-full bg-slate-900 text-white py-3 rounded-xl font-bold">Sign In</button>
     </div>
   </div>
@@ -290,9 +368,9 @@ const Footer = ({ setView }) => (
       <div>
         <h4 className="text-white font-semibold mb-4">Services</h4>
         <ul className="space-y-2">
-          <li>Dryer Vent Cleaning</li>
-          <li>Thermostat Install</li>
-          <li>Winter Weatherization</li>
+          <li>Exhaust Vent Cleaning</li>
+          <li>Dryer Vent Safety Audit</li>
+          <li>Smart Home Setup</li>
         </ul>
       </div>
       <div>
@@ -323,7 +401,13 @@ const App = () => {
   return (
     <div className="font-sans text-slate-900 bg-white">
       <Header setView={setView} view={view} />
-      {view === 'home' && <><Hero setView={setView} /><ServiceGrid setView={setView} /></>}
+      {view === 'home' && (
+        <>
+          <Hero setView={setView} />
+          <ResultsGallery />
+          <ServiceGrid setView={setView} />
+        </>
+      )}
       {view === 'agent' && <AgentInterface setView={setView} />}
       {view === 'dashboard' && <OperatorDashboard />}
       {view === 'subcontractor' && <SubcontractorPortal />}
